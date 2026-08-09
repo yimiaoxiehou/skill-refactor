@@ -105,14 +105,55 @@ SMTP_SECURE=true
 
 支持的邮箱服务商：163、126、188、QQ、企业邮箱、Gmail、Outlook、iCloud、Fastmail 等。
 
+## 安装为 WorkBuddy Skill
+
+每个工具目录都包含独立的 `SKILL.md`（WorkBuddy Skill 描述文件）和 `main.go`（Go 源码），可作为独立 Skill 安装。
+
+### 从 GitHub 安装单个 Skill
+
+```bash
+# 安装 GitHub AI 趋势追踪
+npx skills add https://github.com/yimiaoxiehou/skill-refactor -s fetch_trends
+
+# 安装 GitHub 热门项目
+npx skills add https://github.com/yimiaoxiehou/skill-refactor -s github_trending
+
+# 安装 COSMIC Lib Generator
+npx skills add https://github.com/yimiaoxiehou/skill-refactor -s generate_lib
+
+# 安装 COSMIC Lib Validator
+npx skills add https://github.com/yimiaoxiehou/skill-refactor -s validate_lib
+
+# 安装图表渲染器
+npx skills add https://github.com/yimiaoxiehou/skill-refactor -s render_diagram
+
+# 安装 IMAP/SMTP 邮件工具
+npx skills add https://github.com/yimiaoxiehou/skill-refactor -s imap_smtp
+
+# 安装 Burp MCP 桥接
+npx skills add https://github.com/yimiaoxiehou/skill-refactor -s mcp_bridge
+```
+
+### 手动安装
+
+将对应目录复制到 `~/.workbuddy/skills/` 下，编译即可使用：
+
+```bash
+# 以 fetch_trends 为例
+cp -r fetch_trends ~/.workbuddy/skills/
+cd ~/.workbuddy/skills/fetch_trends
+go build -o scripts/fetch_trends .
+```
+
 ## 构建
 
 ```bash
-# 构建所有工具（除 imap-smtp）
+# 构建所有 stdlib 工具
 go build -o bin/ ./fetch_trends ./github_trending ./generate_lib ./validate_lib ./render_diagram ./create_sample_diagrams ./mcp_bridge ./add_methods
 
-# 构建 imap-smtp（需要外部依赖）
-cd imap_smtp && go build -o ../bin/imap-smtp-email .
+# 构建 imap-smtp（独立 go module，需要外部依赖）
+cd imap_smtp && go build -o ../bin/imap-smtp-email . && cd ..
+cd imap_smtp && go build -o ../bin/migrate-legacy-config ./migrate/ && cd ..
 ```
 
 ## 许可证
