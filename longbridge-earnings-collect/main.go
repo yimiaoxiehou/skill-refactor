@@ -77,7 +77,11 @@ func slim(node interface{}) interface{} {
 	}
 }
 
-func dropEmpty(node interface{}) interface{} {
+func dropEmpty(data map[string]interface{}) interface{} {
+	return dropEmptyAny(data)
+}
+
+func dropEmptyAny(node interface{}) interface{} {
 	switch v := node.(type) {
 	case map[string]interface{}:
 		out := make(map[string]interface{})
@@ -85,13 +89,13 @@ func dropEmpty(node interface{}) interface{} {
 			if val == "" || val == nil {
 				continue
 			}
-			out[k] = dropEmpty(val)
+			out[k] = dropEmptyAny(val)
 		}
 		return out
 	case []interface{}:
 		out := make([]interface{}, 0, len(v))
 		for _, val := range v {
-			out = append(out, dropEmpty(val))
+			out = append(out, dropEmptyAny(val))
 		}
 		return out
 	default:
