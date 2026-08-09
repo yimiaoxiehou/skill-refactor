@@ -28,3 +28,10 @@ Thumbs.db
 # imap-smtp binary
 imap_smtp/imap-smtp-email
 imap_smtp/migrate-legacy-config
+
+# Longbridge earnings collect binary
+longbridge-earnings-collect/longbridge-earnings-collect
+
+# Longbridge temp files
+longbridge-skills/**/*.pyc
+longbridge-skills/**/__pycache__/

@@ -28,6 +28,29 @@ WorkBuddy Skills 的 Go 语言重构合集。将原有的 Python / Node.js / She
 | `imap-smtp-email` | IMAP/SMTP Email (`imap-smtp-email`) | Go | IMAP 收件 / SMTP 发件完整邮件工具 |
 | `mcp_bridge` | Burp MCP Bridge | Python | Burp Suite MCP 协议桥接 |
 | `add_methods` | Burp MCP Helper | Python | Burp MCP 扩展方法注入 |
+| `longbridge-earnings-collect` | Longbridge Earnings (`collect.py`) | Python | Longbridge 财报数据并行收集器 |
+
+### Longbridge Skills 合集
+
+[`longbridge-skills/`](longbridge-skills/) 包含 13 个 Longbridge 金融数据平台的专业 Skill：
+
+| Skill | 类型 | 说明 |
+|-------|------|------|
+| [longbridge](longbridge-skills/longbridge/) | Hub | 投资分析主入口 |
+| [longbridge-content](longbridge-skills/longbridge-content/) | 数据 | 新闻、公告、SEC 文件 |
+| [longbridge-derivatives](longbridge-skills/longbridge-derivatives/) | 数据 | 期权、窝轮/牛熊证 |
+| [longbridge-earnings](longbridge-skills/longbridge-earnings/) | 分析 | 财报前/后分析 |
+| [longbridge-fundamentals](longbridge-skills/longbridge-fundamentals/) | 分析 | 财务报表、估值 |
+| [longbridge-intel](longbridge-skills/longbridge-intel/) | 情报 | 策略筛选、异动 |
+| [longbridge-market-data](longbridge-skills/longbridge-market-data/) | 数据 | 行情、K线、盘口 |
+| [longbridge-portfolio](longbridge-skills/longbridge-portfolio/) | 交易 | 持仓、组合诊断 |
+| [longbridge-quant](longbridge-skills/longbridge-quant/) | 量化 | 因子模型、ML |
+| [longbridge-research](longbridge-skills/longbridge-research/) | 研究 | 评级、空头 |
+| [longbridge-technical](longbridge-skills/longbridge-technical/) | 技术 | K线形态、缠论 |
+| [longbridge-value-investing](longbridge-skills/longbridge-value-investing/) | 价值 | 格雷厄姆/巴菲特 |
+| [longbridge-watchlist](longbridge-skills/longbridge-watchlist/) | 工具 | 自选股、提醒 |
+
+> **注**：12/13 个 Longbridge Skill 为纯 prompt 文档（无需重构）。仅 `longbridge-earnings` 的 `collect.py` 已用 Go 重写为 `longbridge-earnings-collect`。
 
 ## 源项目
 
@@ -41,6 +64,8 @@ WorkBuddy Skills 的 Go 语言重构合集。将原有的 Python / Node.js / She
 | `render_diagram` | [drawio-skill](https://github.com/Agents365-ai/drawio-skill) | Agents365-ai |
 | `imap-smtp-email` | [imap-smtp-email](https://clawhub.ai) | gzlicanyi |
 | `mcp_bridge` / `add_methods` | Burp MCP Bridge | MCP Community |
+| `longbridge-earnings-collect` | [longbridge-earnings](https://open.longbridge.com) | Longbridge Open Platform |
+| Longbridge Skills 合集 | [Longbridge Open Platform](https://open.longbridge.com) | Longbridge |
 
 ## 使用
 
@@ -132,6 +157,12 @@ npx skills add https://github.com/yimiaoxiehou/skill-refactor -s imap_smtp
 
 # 安装 Burp MCP 桥接
 npx skills add https://github.com/yimiaoxiehou/skill-refactor -s mcp_bridge
+
+# 安装 Longbridge 财报收集器
+npx skills add https://github.com/yimiaoxiehou/skill-refactor -s longbridge-earnings-collect
+
+# 安装 Longbridge Skills 合集（父 Skill）
+npx skills add https://github.com/yimiaoxiehou/skill-refactor -s longbridge-skills
 ```
 
 ### 手动安装
